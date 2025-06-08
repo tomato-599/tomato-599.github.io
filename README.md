@@ -1,5 +1,5 @@
 ## Is it not your language?  
-[**English**](README.md) | [简体中文](README_cn.md) | [繁體中文](README_tw.md)  
+**English** | [简体中文](README_cn.md) | [繁體中文](README_tw.md)  
 
 ## Project Overview  
 This is just a simple personal webpage project.  
