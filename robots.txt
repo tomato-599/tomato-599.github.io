@@ -1,7 +1,16 @@
 User-agent: *
-Allow: /   
+Allow: /$
 Allow: /page/
-Disallow: /404.html
+Allow: /index.html
+Allow: /styles.css
+Allow: /scripts.js
 Disallow: /*.html$
+Disallow: /page/*.html$
+Disallow: /400.html
+Disallow: /403.html
+Disallow: /404.html
+Disallow: /503.html
+Disallow: /LICENSE
+Disallow: /README*
 
 Sitemap: https://tomato-599.github.io/sitemap.xml
