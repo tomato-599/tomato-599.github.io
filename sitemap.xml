@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- 根目录主页 -->
+    <url>
+        <loc>https://tomato-599.github.io/</loc>
+        <lastmod>2024-06-15</lastmod>  <!-- 更新为 index.html 的最后修改日期 -->
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- 当前唯一文章 -->
+    <url>
+        <loc>https://tomato-599.github.io/page/000001.html</loc>
+        <lastmod>2024-06-15</lastmod>  <!-- 替换为文件实际修改日期 -->
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- ############################### -->
+    <!-- 未来新增文章模板（使用时移除注释） -->
+    <!-- 
+    <url>
+        <loc>https://tomato-599.github.io/page/YYYYMM.html</loc>
+        <lastmod>YYYY-MM-DD</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    -->
+    <!-- 模板说明：
+         1. 将 YYYYMM 替换为文章编号（如 000002）
+         2. 将 YYYY-MM-DD 替换为文件最后修改日期
+         3. 若文章重要性高，可调整 priority 到 0.9
+    -->
+</urlset>
