@@ -1,5 +1,5 @@
 ## 不是你的語言？  
-[English](README.md) | [简体中文](README_zh.md) | **繁體中文**  
+[English](README.md) | [简体中文](README_cn.md) | **繁體中文**  
 
 ## 專案概述
 這僅僅只是一個簡單的個人網頁專案
