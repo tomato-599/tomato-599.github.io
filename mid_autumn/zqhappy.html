@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中秋快乐</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            overflow: hidden;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        canvas {
+            display: block;
+        }
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        .blessing {
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            text-shadow: 0 0 10px gold;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <canvas id="canvas"></canvas>
+        <div class="blessing" id="blessing">月圆人团圆，事事皆圆满！</div>
+    </div>
+
+    <script>
+        // 获取Canvas元素和上下文
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const blessing = document.getElementById('blessing');
+
+        // 设置Canvas大小为窗口大小
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // 文字类
+        class TextAnimation {
+            constructor() {
+                this.characters = ['中', '秋', '快', '乐'];
+                this.positions = [];
+                this.currentY = -100;
+                this.finalY = canvas.height / 2 - 50;
+                this.currentChar = 0;
+                this.completed = false;
+                this.setupPositions();
+            }
+
+            setupPositions() {
+                const totalWidth = this.characters.length * 120;
+                const startX = (canvas.width - totalWidth) / 2 + 60;
+                
+                for (let i = 0; i < this.characters.length; i++) {
+                    this.positions.push({
+                        x: startX + i * 120,
+                        y: this.currentY,
+                        finalY: this.finalY,
+                        char: this.characters[i],
+                        completed: false
+                    });
+                }
+            }
+
+            update() {
+                if (this.completed) return;
+
+                const currentPos = this.positions[this.currentChar];
+                
+                if (currentPos.y < currentPos.finalY) {
+                    currentPos.y += 8;
+                    if (currentPos.y >= currentPos.finalY) {
+                        currentPos.y = currentPos.finalY;
+                        currentPos.completed = true;
+                        this.currentChar++;
+                        
+                        if (this.currentChar >= this.characters.length) {
+                            this.completed = true;
+                            // 文字绘制完成后显示祝福语
+                            blessing.style.opacity = '0';
+                            blessing.style.transition = 'opacity 2s';
+                            setTimeout(() => {
+                                blessing.style.opacity = '1';
+                            }, 100);
+                        }
+                    }
+                }
+            }
+
+            draw() {
+                ctx.font = 'bold 80px "楷体", "Microsoft YaHei", sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                
+                this.positions.forEach((pos, index) => {
+                    if (index <= this.currentChar) {
+                        // 文字阴影效果
+                        ctx.shadowColor = 'gold';
+                        ctx.shadowBlur = 20;
+                        
+                        // 渐变颜色
+                        const gradient = ctx.createLinearGradient(pos.x - 40, pos.y - 40, pos.x + 40, pos.y + 40);
+                        gradient.addColorStop(0, '#FFD700');
+                        gradient.addColorStop(1, '#FFA500');
+                        
+                        ctx.fillStyle = gradient;
+                        ctx.fillText(pos.char, pos.x, pos.y);
+                        
+                        ctx.shadowBlur = 0;
+                    }
+                });
+            }
+        }
+
+        // 礼花类
+        class Firework {
+            constructor() {
+                this.reset();
+                this.emoji = this.getRandomEmoji();
+            }
+
+            getRandomEmoji() {
+                const emojis = ['🎉', '🎊', '✨', '🌟', '🥮', '🐰', '🌕', '🎇', '🌙', '💫'];
+                return emojis[Math.floor(Math.random() * emojis.length)];
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -100 - 50;
+                this.speedY = 2 + Math.random() * 3;
+                this.speedX = -1 + Math.random() * 2;
+                this.size = 20 + Math.random() * 30;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = -2 + Math.random() * 4;
+                this.alpha = 0.8 + Math.random() * 0.2;
+                this.oscillation = Math.random() * Math.PI * 2;
+                this.oscillationSpeed = 0.05 + Math.random() * 0.05;
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.rotation += this.rotationSpeed;
+                this.oscillation += this.oscillationSpeed;
+                
+                // 添加左右摆动效果
+                this.x += Math.sin(this.oscillation) * 0.5;
+
+                // 如果礼花超出屏幕底部，重置
+                if (this.y > canvas.height + 50) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+                
+                ctx.font = `${this.size}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(this.emoji, 0, 0);
+                
+                ctx.restore();
+            }
+        }
+
+        // 月亮类
+        class Moon {
+            constructor() {
+                this.x = canvas.width - 100;
+                this.y = 100;
+                this.radius = 60;
+                this.glow = 0;
+                this.glowDirection = 1;
+            }
+
+            update() {
+                this.glow += 0.02 * this.glowDirection;
+                if (this.glow > 1 || this.glow < 0) {
+                    this.glowDirection *= -1;
+                }
+            }
+
+            draw() {
+                // 月亮光晕
+                const gradient = ctx.createRadialGradient(
+                    this.x, this.y, this.radius,
+                    this.x, this.y, this.radius + 50
+                );
+                gradient.addColorStop(0, `rgba(255, 215, 0, ${0.3 + this.glow * 0.2})`);
+                gradient.addColorStop(1, 'rgba(255, 215, 0, 0)');
+                
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius + 50, 0, Math.PI * 2);
+                ctx.fill();
+
+                // 月亮本体
+                ctx.fillStyle = '#FFD700';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                // 月亮纹理
+                ctx.fillStyle = '#FFA500';
+                ctx.beginPath();
+                ctx.arc(this.x - 15, this.y - 10, 12, 0, Math.PI * 2);
+                ctx.arc(this.x + 20, this.y + 15, 8, 0, Math.PI * 2);
+                ctx.arc(this.x - 10, this.y + 20, 10, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // 创建对象
+        const textAnimation = new TextAnimation();
+        const moon = new Moon();
+        const fireworks = [];
+
+        // 创建多个礼花
+        for (let i = 0; i < 30; i++) {
+            fireworks.push(new Firework());
+        }
+
+        // 动画循环
+        function animate() {
+            // 清除画布
+            ctx.fillStyle = 'rgba(15, 12, 41, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 绘制星星背景
+            drawStars();
+
+            // 更新和绘制月亮
+            moon.update();
+            moon.draw();
+
+            // 更新和绘制文字动画
+            textAnimation.update();
+            textAnimation.draw();
+
+            // 更新和绘制礼花
+            fireworks.forEach(firework => {
+                firework.update();
+                firework.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        // 绘制星星背景
+        function drawStars() {
+            ctx.fillStyle = 'white';
+            for (let i = 0; i < 100; i++) {
+                const x = (i * 123.45) % canvas.width;
+                const y = (i * 67.89) % canvas.height;
+                const size = Math.sin(Date.now() * 0.001 + i) * 1 + 1;
+                
+                ctx.globalAlpha = 0.5 + Math.sin(Date.now() * 0.002 + i) * 0.3;
+                ctx.beginPath();
+                ctx.arc(x, y, size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            ctx.globalAlpha = 1;
+        }
+
+        // 窗口大小调整处理
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            // 重新初始化文字位置
+            textAnimation.setupPositions();
+        });
+
+        // 开始动画
+        animate();
+
+        // 添加点击创建新礼花的功能
+        canvas.addEventListener('click', function(event) {
+            const rect = canvas.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            
+            const newFirework = new Firework();
+            newFirework.x = x;
+            newFirework.y = y;
+            newFirework.speedY = -2; // 向上喷射
+            fireworks.push(newFirework);
+        });
+    </script>
+</body>
+</html>
