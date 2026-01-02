@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>凌曦小站 | 创意工具集</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 语言切换按钮 -->
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="zh">中文</button>
+        <button class="lang-btn" data-lang="en">English</button>
+    </div>
+    
+    <!-- 背景元素 -->
+    <div class="background-blur"></div>
+    <div class="floating-elements"></div>
+    
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 头部区域 -->
+        <header class="header">
+            <div class="avatar-container">
+                <div class="avatar">
+                    <i class="fas fa-rocket"></i>
+                </div>
+            </div>
+            <h1 class="site-title" data-i18n="siteTitle">凌曦小站</h1>
+            <p class="site-subtitle" data-i18n="siteSubtitle">一个正在构建中的博客</p>
+            <div class="typing-container">
+                <span id="typing-text"></span>
+                <span class="cursor">|</span>
+            </div>
+        </header>
+        
+        <!-- 主要内容区 -->
+        <main class="main-content">
+            <!-- 状态提示 -->
+            <div class="status-card">
+                <div class="status-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <div class="status-content">
+                    <h3 data-i18n="constructionTitle">网站正在施工中...</h3>
+                    <p data-i18n="constructionText">我们正在努力构建这个空间，目前部分功能还在开发中。你可以先探索以下可用工具。</p>
+                </div>
+            </div>
+            
+            <!-- 工具卡片 -->
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fab fa-java"></i>
+                    </div>
+                    <h3 class="card-title" data-i18n="javaCardTitle">Java开发工具包</h3>
+                    <p class="card-desc" data-i18n="javaCardDesc">各版本JDK下载，支持从Java 8到最新版本</p>
+                    <div class="card-actions">
+                        <a href="/" class="btn btn-primary">
+                            <i class="fas fa-external-link-alt"></i> 
+                            <span data-i18n="enterButton">点我进入</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="card-title" data-i18n="devToolsCardTitle">开发工具集</h3>
+                    <p class="card-desc" data-i18n="devToolsCardDesc">前端开发、调试、API测试等实用工具</p>
+                    <div class="card-actions">
+                        <button class="btn btn-disabled" disabled>
+                            <i class="fas fa-clock"></i> 
+                            <span data-i18n="developingButton">开发ing...</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3 class="card-title" data-i18n="articlesCardTitle">文章列表</h3>
+                    <p class="card-desc" data-i18n="articlesCardDesc">查看所有的文章</p>
+                    <div class="card-actions">
+                        <a href="articles.html" class="btn btn-primary">
+                            <i class="fas fa-external-link-alt"></i> 
+                            <span data-i18n="enterButton">点我进入</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="card-title" data-i18n="creativeLabTitle">创意实验室</h3>
+                    <p class="card-desc" data-i18n="creativeLabDesc">CSS效果、动画实验、创意交互演示</p>
+                    <div class="card-actions">
+                        <a href="#" class="btn btn-primary">
+                            <i class="fas fa-external-link-alt"></i> 
+                            <span data-i18n="enterButton">点我进入</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3 class="card-title" data-i18n="musicTitle">音乐空间</h3>
+                    <p class="card-desc" data-i18n="musicDesc">分享音乐推荐与播放列表</p>
+                    <div class="card-actions">
+                        <a href="#" class="btn btn-primary">
+                            <i class="fas fa-external-link-alt"></i> 
+                            <span data-i18n="enterButton">点我进入</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3 class="card-title" data-i18n="gamesTitle">小游戏</h3>
+                    <p class="card-desc" data-i18n="gamesDesc">有趣的HTML5小游戏集合</p>
+                    <div class="card-actions">
+                        <a href="#" class="btn btn-primary">
+                            <i class="fas fa-external-link-alt"></i> 
+                            <span data-i18n="enterButton">点我进入</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 特色功能 -->
+            <div class="features">
+                <h2 class="section-title" data-i18n="featuresTitle">特色功能</h2>
+                <div class="features-list">
+                    <div class="feature">
+                        <i class="fas fa-language"></i>
+                        <h4 data-i18n="feature1Title">多语言支持</h4>
+                        <p data-i18n="feature1Desc">支持中文与英文切换</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h4 data-i18n="feature2Title">响应式设计</h4>
+                        <p data-i18n="feature2Desc">适配各种设备屏幕</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-bolt"></i>
+                        <h4 data-i18n="feature3Title">快速加载</h4>
+                        <p data-i18n="feature3Desc">优化性能，体验流畅</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-code-branch"></i>
+                        <h4 data-i18n="feature4Title">持续更新</h4>
+                        <p data-i18n="feature4Desc">定期添加新工具和功能</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- 页脚 -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="https://github.com" target="_blank" class="footer-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://mit-license.org/" target="_blank" class="footer-link">
+                        <i class="fas fa-balance-scale"></i> 
+                        <span data-i18n="mitLicense">MIT协议</span>
+                    </a>
+                </div>
+                <div class="footer-info">
+                    <p class="copyright" data-i18n="copyright">© 2026 凌曦小站. 保留所有权利.</p>
+                    <p class="license">
+                        <span data-i18n="licenseText">除另有声明，本站内容均采用</span>
+                        <a href="https://mit-license.org/" target="_blank" data-i18n="mitLicense">MIT许可证</a>.
+                    </p>
+                </div>
+                <div class="theme-toggle">
+                    <button id="theme-toggle" class="theme-btn">
+                        <i class="fas fa-moon"></i> 
+                        <span data-i18n="themeToggle">切换主题</span>
+                    </button>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- 脚本 -->
+    <script src="scripts.js"></script>
+    <script src="i18n.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Ukenn2112/UkennWeb@3.0/index/web.js" defer></script>
+</body>
+</html>

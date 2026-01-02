@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<passages>
+    <article id="1">
+        <title>全版本Java(JDK)下载</title>
+        <category>资源</category>
+        <author>凌曦</author>
+        <date>2026-01-02</date>
+        <readTime>1分钟</readTime>
+        <excerpt>为你的开发、游戏等的Java下载需求之路</excerpt>
+        <tags>
+            <tag>Java</tag>
+            <tag>资源荟萃</tag>
+        </tags>
+        <image>image请替换</image>
+        <url>article-detail.html?id=1</url>
+        <featured>true</featured>
+    </article>
+</passages>
