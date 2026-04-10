@@ -1,0 +1,9 @@
+/* 自定义代码块字体 */
+#article-container pre,
+#article-container code,
+.highlight,
+figure.highlight pre .code,
+figure.highlight .code pre {
+    font-family: 'Fira Code', 'Monaco', 'Consolas', monospace !important;
+    font-variant-ligatures: contextual;
+}
