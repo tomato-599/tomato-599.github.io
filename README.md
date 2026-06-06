@@ -1,6 +1,6 @@
 # 这是我的个人Blog
 
-If you need another language, check these [English](./README-EN.md) · [繁體中文](./README-Hant.md) ·  [日本語](README-JP.md)
+If you need another language, check these [English](./README-EN.md) · [简体中文](./README.md) · [繁體中文](./README-Hant.md) ·  [日本語](README-JP.md)
 
 
 > 基于 Hexo 构建的个人博客，记录技术与思考。
